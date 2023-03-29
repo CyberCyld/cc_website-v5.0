@@ -1,0 +1,12 @@
+PORT='3000'
+JWT_token='se8r5g4t5GB5DF4BgdHd8g7er56wA5D65W6465SA4F654'
+DB_HOST='localhost'
+DB_USER='root'
+DB_PASS=''
+DB_NAME='cybercyld'
+MAIL_HOST='smtp.gmail.com'
+MAIL_USER='cybercyld@gmail.com'
+MAIL_PASS='saclvggkdbrdudul'
+FACEBOOK_APP_ID=<your_app_id>
+FACEBOOK_APP_SECRET=<your_app_secret>
+JWT_SECRET_KEY=4895327992843728

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberCyld-login</title>
+    <link rel="stylesheet" type="text/css" href="./../public/form/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./../public/form/css/fontawsome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="./../public/form/css/iofrm-style.css">
+    <link rel="stylesheet" type="text/css" href="./../public/form/css/iofrm-theme1.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <!-- Google reCAPTCHA CDN -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer>
+    </script>
+</head>
+
+<body>
+    <div class="form-body">
+        <div class="website-logo">
+            <a href="/">
+                <div class="">
+                    <img class="logo-size" src="./../public/logo2.png" alt="" height="100px">
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder"></div>
+            </div>
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>User Access Door</h3>
+                        <p>Access to the most powerfull tool in the Social Media Security industry.</p>
+                        <div class="page-links">
+                            <a href="/login" class="active">Login</a><a href="/register">Register</a><a href="/">Go Back to Home</a>
+                        </div>
+                        <form  id="comment_form">
+                            <input class="form-control" spellcheck="false" type="text" name="username" id="username" placeholder="Username"
+                                required>
+                            <div style="display: flex; flex-wrap: nowrap;">
+                                <input class="form-control" spellcheck="false" type="password" name="password" id="password"
+                                    placeholder="Password" required> &nbsp;
+                                <button type="button" class="ibtn" onclick="sPwd()"
+                                    style=" margin: 0 0 14px; border-radius: 7px; border: 1px solid rgb(223, 219, 219); outline: none;"><img
+                                        class="sPwd" src="./../public/form/images/eye-slash-solid.svg"
+                                        width="20px"></button>
+                            </div>
+                             <div id="alert-msg"></div>
+                             <div class="g-recaptcha"data-sitekey="6Lf4V5UjAAAAAEG29D5yiPvDdQHO0SpGmDWZD87Z"></div>
+                            <div class="form-button">
+                                <button id="submit" type="submit" class="ibtn">Login</button> <a
+                                    href="/recovery">Forget password?</a>
+                            </div>
+                        </form>
+                        <div class="other-links">
+                           <div class="col-md-12">
+                                  <span>Or Login with</span><a href="/auth/facebook">Facebook</a><a href="/auth/google">Google</a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./../public/form/js/main.js"></script>
+    <script src="./../public/api/login.js"></script>
+    <!--google recaptcha-->
+     <script>
+    $(document).ready(function() {
+      $('#comment_form').submit(function() {
+        $(this).ajaxSubmit({
+          error: function(xhr) {
+            status('Error: ' + xhr.status);
+          },
+         success: function(response) {
+          console.log(response);
+         }
+        });
+        //Very important line, it disable the page refresh.
+        return false;
+      });
+    });
+  script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+.form-body {
+    background-color: #78d3d3
+}
+
+.website-logo {
+    display: inline-block;
+    top: 50px;
+    left: 50px;
+    right: initial;
+    bottom: initial
+}
+
+.website-logo img {
+    width: 100px
+}
+
+.website-logo .logo {
+    background-image: url(../images/logo-light.svg)
+}
+
+.website-logo .logo img {
+    width: 100px
+}
+
+.img-holder {
+    width: 550px;
+    background-color: #000
+}
+
+.img-holder .info-holder h3 {
+    color: #fff;
+    text-align: left
+}
+
+.img-holder .info-holder h3 span {
+    color: #fff
+}
+
+.img-holder .info-holder h2 {
+    color: #fff;
+    text-align: left
+}
+
+.img-holder .info-holder h2 span {
+    color: #fff
+}
+
+.img-holder .info-holder p {
+    color: #fff;
+    text-align: left
+}
+
+.img-holder .bg {
+    opacity: .90;
+    background-image: url(https://s40424.pcdn.co/in/wp-content/uploads/2022/06/10-cybersecurity.jpg)
+}
+
+.form-holder {
+    margin-left: 550px
+}
+
+.form-holder .form-content ::-webkit-input-placeholder {
+    color: #596a8e
+}
+
+.form-holder .form-content :-moz-placeholder {
+    color: #596a8e
+}
+
+.form-holder .form-content ::-moz-placeholder {
+    color: #596a8e
+}
+
+.form-holder .form-content :-ms-input-placeholder {
+    color: #596a8e
+}
+
+.form-content {
+    background-color: #78d3d3
+}
+
+.form-content .form-items {
+    max-width: 340px;
+    text-align: left
+}
+
+.form-content h3 {
+    color: #fff;
+    text-align: left
+}
+
+.form-content p {
+    color: #fff;
+    text-align: left
+}
+
+.form-content .page-links a {
+    color: #fff
+}
+
+.form-content .page-links a:after {
+    background-color: rgba(255, 255, 255, .5)
+}
+
+.form-content .page-links a.active:after {
+    background-color: #fff
+}
+
+.form-content .page-links a:focus:after, .form-content .page-links a:hover:after {
+    background-color: #fff
+}
+
+.form-content input {
+    border: 0;
+    background-color: #fff;
+    color: #8d8d8d
+}
+
+.form-content input:focus, .form-content input:hover {
+    border: 0;
+    background-color: #ebeff8;
+    color: #8d8d8d
+}
+
+.form-content .form-button .ibtn {
+    background-color: #fff;
+    color: #29a4ff;
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .16);
+    box-shadow: 0 0 0 rgba(0, 0, 0, .16)
+}
+
+.form-content .form-button .ibtn:focus, .form-content .form-button .ibtn:hover {
+    -webkit-box-shadow: 0 5px 6px rgba(0, 0, 0, .16);
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .16)
+}
+
+.form-content .form-button a {
+    color: #fff
+}
+
+.form-content .other-links span {
+    color: #fff
+}
+
+.form-content .other-links a {
+    color: #fff
+}
+
+.form-content .form-sent h3 {
+    color: #fff
+}
+
+.form-content .form-sent p {
+    color: #fff
+}
+
+.form-content .form-sent .info-holder {
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, .5)
+}
+
+.form-content .form-sent .info-holder span {
+    color: #fff
+}
+
+.form-content .form-sent .info-holder a {
+    color: #fff
+}
+
+@keyframes tick-anime3 {
+    0% {
+        background-color: rgba(255, 255, 255, 0);
+        -webkit-transform: rotate(35deg) scale(2);
+        -moz-transform: rotate(35deg) scale(2);
+        -ms-transform: rotate(35deg) scale(2);
+        transform: rotate(35deg) scale(2)
+    }
+    100% {
+        background-color: rgba(255, 255, 255, .2);
+        -webkit-transform: rotate(45deg) scale(1);
+        -moz-transform: rotate(45deg) scale(1);
+        -ms-transform: rotate(45deg) scale(1);
+        transform: rotate(45deg) scale(1)
+    }
+}
+
+.alert {
+    color: #fff
+}
+
+.alert.alert-info {
+    background-color: rgba(220, 237, 241, .1);
+    border-color: #fff
+}
+
+.alert.alert-light {
+    background-color: rgba(254, 254, 254, .1);
+    border-color: #fff
+}
+
+.alert a, .alert a.alert-link {
+    color: #fff
+}
+
+@media (max-width:992px) {
+    .form-holder {
+        margin-left: 0
+    }
+    .website-logo {
+        top: 50px;
+        left: 50px;
+        right: initial;
+        bottom: initial
+    }
+    .website-logo .logo {
+        background-image: url(../images/logo-light.svg)
+    }
+}

@@ -1,0 +1,19 @@
+<form action="/pay" method="POST">
+  <input type="hidden" name="amount" value="{{amount}}">
+  <input type="hidden" name="currency" value="{{currency}}">
+  <input type="hidden" name="name" value="{{name}}">
+  <input type="hidden" name="description" value="{{description}}">
+  <input type="hidden" name="image" value="{{image}}">
+  <input type="hidden" name="order_id" value="{{order_id}}">
+  <script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="{{key_id}}"
+    data-amount="{{amount}}"
+    data-currency="{{currency}}"
+    data-name="{{name}}"
+    data-description="{{description}}"
+    data-image="{{image}}"
+    data-order_id="{{order_id}}"
+  ></script>
+  <button type="submit">Pay with Razorpay</button>
+</form>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../public/account/css/style.css">
+    <link rel="stylesheet" href="./../public/account/1setting/css/setting.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>settings</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="options">
+            <div>
+                <a title="help" href="#"><img src="./../public/account/icons/question-circle-regular.svg"
+                        height="20px"></a>
+                <a title="notification" href="#"><img src="./../public/account/icons/bell-regular.svg"
+                        height="20px"></a>
+            </div>
+            <div>
+                <div>
+                    <div class="name">{{name}}</div>
+                    <div class="email">{{email}}<img src="./../public/account/icons/caret-down-solid.svg" height="12px">
+                    </div>
+                </div>
+                <div class="ext">
+                    <a href="/dashboard">My Account</a>
+                    <a href="/setting">Setting</a>
+                    <a id="logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <navbar id="nav">
+        <div class="collapsible"><img id="arrow" src="./../public/account/icons/angle-right-solid.svg" height="30px">
+        </div>
+        <div class="logo">CyberCyld</div>
+        <br>
+        <div class="options">
+            <ul>
+                <a href="/home">
+                    <li>Home</li>
+                </a>
+                <a href="/dashboard">
+                    <li>Account</li>
+                </a>
+                <a href="#">
+                    <li>Notification</li>
+                </a>
+                <a href="/setting">
+                    <li>Setting</li>
+                </a>
+                <a href="#">
+                    <li>Support</li>
+                </a>
+                <a id="logout">
+                    <li>LogOut</li>
+                </a>
+            </ul>
+        </div>
+    </navbar>
+
+<br> 
+<br> 
+<br> 
+<h2>Settings</h2>
+    <section>
+        <div id="tab">
+            <h3 id="general">General</h3>
+            <h3 id="security">Security</h3>
+            <h3 id="service">Service</h3>
+            <h3 id="theme">Your Plan</h3>
+        </div>
+
+        <div class="general">
+            <div>
+                <div>UserID</div>
+                <div>{{userID}} <button style="display: none;" id="edit1"><img src="./../public/account/1setting/icons/edit-regular.svg" height="20px"></button></div>
+            </div>
+            <div style="display: none;">
+               <div><input spellcheck="false" type="text" placeholder="cannot change ID"></div>
+               <div><button  type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Change</button></div>
+            </div>
+            <div>
+                <div>Name</div>
+                <div>{{name}} <button id="edit2"><img src="./../public/account/1setting/icons/edit-regular.svg" height="20px"></button></div>
+            </div>
+            <div style="display: none;">
+               <div><input id="name" type="text" spellcheck="false" placeholder="Enter Your New Name"></div>
+               <div><button  type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Change</button></div>
+            </div>
+            <div>
+                <div>Email Id</div>
+                <div>{{email}} <button id="edit3"><img src="./../public/account/1setting/icons/edit-regular.svg"
+                            height="20px"></button></div>
+            </div>
+            <div style="display: none;">
+               <div><input  id="email" type="text" spellcheck="false" placeholder="Enter Your New Email"></div>
+               <div><button  type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Change</button></div>
+            </div>
+        </div>
+        <div class="security" style="display: none;">
+            <div>
+                <div>userID</div>
+                <div>{{userID}} </div>
+            </div>
+            <div>
+                <div>Password</div>
+                <div>
+                    <div class="do-button">Change Password</div>
+                </div>
+            </div>
+            <div>
+                <div>Login</div>
+                <div>
+                    <div class="do-button" id="logout-from-all-devices">Logout From All Devices</div>
+                </div>
+            </div>
+        </div>
+        <div class="service" style="display: none;">
+            <div>
+                <div>API key</div>
+                <div> [ api key ] </api><a href="#"><img src="./../public/account/1setting/icons/edit-regular.svg"
+                            height="20px"></a></div>
+            </div>
+           
+            <div>
+                <div>Documentation</div>
+                <div><a href="#">View Docs</a></div>
+            </div>
+        </div>
+        <div class="theme" style="display: none;">
+
+            <div>
+                <div>Plan:</div>
+                <div>Business Protection Plan<a href="#"><img src="./../public/account/1setting/icons/edit-regular.svg" height="20px"></a>
+                </div>
+            </div>
+            <div>
+                <div>View More </div>
+                <div><a href="#">View Docs</a></div>
+            </div>
+
+        </div>
+        <div>
+
+        </div>
+    </section>
+    <h5 id="alert-msg" style=""></h5>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Enter password for verification</h4>
+                </div>
+                <div class="modal-body">
+                    <input spellcheck="false" type="password" placeholder="enter password" id="password-input">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="submit-changes">Submit</button>
+                    &nbsp; &nbsp; &nbsp;
+                    {{!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    &nbsp;&nbsp;&nbsp; --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./../public/account/javascript/script.js"></script>
+    <script src="./../public/account/1setting/javascript/setting.js"></script>
+    <script src="./../public/api/setting.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

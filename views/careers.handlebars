@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>CyberCyld- A Social Media Security Plateform</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+ <!--slider-->
+ 
+  <!-- Favicons -->
+  <link href="" rel="icon">
+  <link href="" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="./../public/assetss/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./../public/assetss/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="./../public/assetss/vendor/aos/aos.css" rel="stylesheet">
+  <link href="./../public/assetss/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="./../public/assetss/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Variables CSS Files. Uncomment your preferred color scheme -->
+  <link href="./../public/assetss/css/variables.css" rel="stylesheet">
+  <!-- <link href="assets/css/variables-blue.css" rel="stylesheet"> -->
+  <!-- <link href="assets/css/variables-green.css" rel="stylesheet"> -->
+  <!-- <link href="assets/css/variables-orange.css" rel="stylesheet"> -->
+  <!-- <link href="assets/css/variables-purple.css" rel="stylesheet"> -->
+  <!-- <link href="assets/css/variables-red.css" rel="stylesheet"> -->
+  <!-- <link href="assets/css/variables-pink.css" rel="stylesheet"> -->
+
+  <!-- Template Main CSS File -->
+  <link href="./../public/assetss/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: HeroBiz - v2.3.1
+  * Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+ 
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top" data-scrollto-offset="0" style="background-color:black;">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+      <a href="/" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="../public/logo2.png" alt="CyberCyld-Logo"> 
+        <h4 style="color:darkgoldenrod;"> <small>Social Media Security Plateform</small><span>.</span></h4>
+      </a>
+
+      <nav id="navbar" class="navbar">
+  <ul>
+    <li class="dropdown" ><a href="/"><span style="color:white;">Home</span></a>
+    </li>
+    <li><a class="nav-link scrollto" href="/blog" style="color:white;">Blog</a></li>
+    
+ <li class="dropdown"><a href="#pricing"><span style="color:white;">Our  Plan</span> <i class="bi bi-chevron-down 
+dropdown-indicator"></i></a>
+      <ul>
+        <li style="color:white;"><a href="/#pricing">Personal Protection Plan</a></li>
+        <li><a href="/#pricing" style="color:white;">Business Protection Plan</a></li>
+      </ul>
+    </li>
+ <li class="dropdown"><a href="#"><span style="color:white;">Contact Us</span> <i class="bi bi-chevron-down 
+dropdown-indicator"></i></a>
+      <ul>
+        <li style="color:white;"><a href="/contacts">Contacts</a></li>
+        <li><a href="/careers" style="color:white;">Careers</a></li>
+      </ul>
+    </li>
+    </ul>
+  <i class="bi bi-list mobile-nav-toggle d-none"></i>
+</nav><!-- .navbar -->
+      
+
+      
+      
+
+      
+<!--  
+      
+      
+      
+      
+      
+      
+-->   
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <a class="btn-getstarted scrollto" href="/login">Login</a>
+
+    </div>
+  </header>
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h3>Jobs</h3>
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li>Careers</li>
+          </ol>
+        </div>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row g-5">
+
+          <div class="col-lg-8">
+
+            <div class="row gy-4 posts-list">
+               {{#each jobPostings}}
+              <div class="col-lg-6">
+                <article class="d-flex flex-column">
+                  <h2 class="title">
+                    <a href="">{{this.job_title}}</a>
+                  </h2>
+
+                  <div class="meta-top">
+                    <ul>
+                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="">Admin</a></li>
+                      
+                    </ul>
+                  </div>
+
+                  <div class="content">
+                     
+                      <p>{{this.job_description}}</p>
+                      <p><strong>Location:</strong> {{this.job_location}}</p>
+                      <p><strong>Type:</strong> {{this.job_type}}</p>
+                      <p><strong>Salary:</strong> {{this.salary}}</p>
+                      {{!-- <p><strong>Posted:</strong> </p> --}}
+                      <p><strong>Posted Date:&nbsp;</strong>{{this.posted_date}}</p>
+                      <p><strong>Deadline Date:&nbsp;</strong>  {{this.application_deadline}}</p>
+                  </div>
+
+                  <div class="read-more mt-auto align-self-end">
+                    <a href="tel: 73939 29207">Feel Free Call Now</a>
+                  </div>
+
+                </article>
+              </div><!-- End post list item -->
+               {{/each}}
+              {{!-- <div class="col-lg-6">
+                <article class="d-flex flex-column">
+                  <h2 class="title">
+                    <a href="blog-details.html">Information Security Analyst </a>
+                  </h2>
+
+                  <div class="meta-top">
+                    <ul>
+                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="">Admin</a></li>
+                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href=""><time datetime="Dec 30, 2022">Dec 30, 2022</time></a></li>
+                    </ul>
+                  </div>
+
+                  <div class="content">
+                   <ul>
+                        <li>Information security and ethical hacking.</li>
+                        <li>Reconnaissance techniques.</li>
+                        <li>System hacking phases and attack techniques.
+                        </li>
+                        <li>Network and perimeter hacking.</li>
+                        <li>Web application hacking.</li>
+                        <li>Wireless network hacking.
+                        </li>
+                    </ul>
+                  </div>
+
+                  <div class="read-more mt-auto align-self-end">
+                    <a href="tel: 73939 29207">Feel Free Call Now</a>
+                  </div>
+
+                </article>
+              </div><!-- End post list item --> --}}
+            </div><!-- End blog posts list -->
+
+            <div class="blog-pagination">
+              <ul class="justify-content-center">
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+              </ul>
+            </div><!-- End blog pagination -->
+
+          </div>
+
+          <div class="col-lg-4">
+
+            <div class="sidebar">
+
+              <div class="sidebar-item search-form">
+                <h3 class="sidebar-title">Search</h3>
+                <form action="" class="mt-3">
+                  <input type="text">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
+
+              <div class="sidebar-item categories">
+                <h3 class="sidebar-title">Blog Categories</h3>
+                <ul class="mt-3">
+                  <li><a href="#">Instagram Posts <span>(25)</span></a></li>
+                  <li><a href="#">facebook Posts<span>(12)</span></a></li>
+                  <li><a href="#">Linkdin Related Security Post<span>(5)</span></a></li>
+                  <li><a href="#">Youtube Related Security Post<span>(22)</span></a></li>
+                  <li><a href="#">Twitter Related Security Posts<span>(8)</span></a></li>
+                  <li><a href="#">Others Security Posts<span>(14)</span></a></li>
+                </ul>
+              </div><!-- End sidebar categories-->
+              <div class="sidebar-item tags">
+                <h3 class="sidebar-title">Tags</h3>
+                <ul class="mt-3">
+                  <li><a href="#">Security Related </a></li>
+                  <li><a href="#">Our Plans Related </a></li>
+                  <li><a href="#">Others </a></li>
+                  <li><a href="#">Cyber Attacks </a></li>
+                  <li><a href="#">Facebook Attacks </a></li>
+                  <li><a href="#">Instagram attacks</a></li>
+                  <li><a href="#">Login Related </a></li>
+                  <li><a href="#">Basic Security problem </a></li>
+                  <li><a href="#">Basic Security Tips</a></li>
+                  <li><a href="#">Tips</a></li>
+                 
+                </ul>
+              </div><!-- End sidebar tags-->
+
+            </div><!-- End Blog Sidebar -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+
+    <div class="footer-content">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h4>CyberCyld- by AppTwig Pvt. Ltd. </h4>
+              <p>
+                Madhuban Vihar Coloney , Near SGPGI , Lucknow 226014<br><br>
+                <strong>Phone:</strong> +91 7393929207<br>
+                <strong>Email:</strong> alert@cybercyld.com<br>
+              </p>
+            </div>
+          </div>
+   
+   <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="/">Home</a></li>
+              <!--<li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>-->
+              <!--<li><i class="bi bi-chevron-right"></i> <a href="#pricing">Services</a></li> -->
+              <li><i class="bi bi-chevron-right"></i> <a href="/terms-of-use">Terms of service</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/policy">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> Instagram Security</li>
+              <li><i class="bi bi-chevron-right"></i> Facebook Security</li>
+              <li><i class="bi bi-chevron-right"></i> YouTube Security</li>
+              <li><i class="bi bi-chevron-right"></i> Twitter Security</li>
+              <li><i class="bi bi-chevron-right"></i> Linkdin Security</li>
+              <li><i class="bi bi-chevron-right"></i> Snapchat Security</li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal text-center">
+      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+
+        <div class="d-flex flex-column align-items-center align-items-lg-start">
+          <div class="copyright">
+            &copy; Copyright <strong><span>Apptwig Pvt. Ltd. </span></strong> All Rights Reserved
+          </div>
+          <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
+            Designed by <a href="https://www.cybercyld.com/">Cybercyld</a>
+          </div>
+        </div>
+
+        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
+          <a href="https://twitter.com/home" class="twitter"><i class="bi bi-twitter"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100088078479457" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/cybercyld/" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
+          <a href="https://www.youtube.com/channel/UCI4-0jfOVGoMfY9Ub18NcBA" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+  </footer><!-- End Footer -->
+  
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="./../public/assetss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="./../public/assetss/vendor/aos/aos.js"></script>
+  <script src="./../public/assetss/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="./../public/assetss/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="./../public/assetss/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="./../public/assetss/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="./../public/assetss/js/main.js"></script>
+<script src="//code.tidio.co/ccn0ykidaz9jq0lfzbkfiv7pzvliefnk.js" async></script>
+</body>
+
+</html>
