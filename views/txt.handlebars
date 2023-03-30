@@ -59,46 +59,48 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top" data-scrollto-offset="0" style="background-color:#17202A; ">
+    <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top" data-scrollto-offset="0" style="background-color:black;">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-      <a href="/index" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+      <a href="/" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <img src="./../public/logo2.png" class="logo" />
+        <img src="../public/logo2.png" alt="CyberCyld-Logo" style="margin-right:30px;"> 
+        {{!-- <h4 style="color:darkgoldenrod;"> <small>Social Media Security Plateform</small><span>.</span></h4> --}}
       </a>
 
       <nav id="navbar" class="navbar">
         <ul>
 
-          <li class="nav-link scrollto"><a href="/" style="color:white;"><span>Home</span></a>
-           <!--<ul>
-              <li><a href="index.html" class="active">Home 1 - index.html</a></li>
-              <li><a href="index-2.html">Home 2 - index-2.html</a></li>
-              <li><a href="index-3.html">Home 3 - index-3.html</a></li>
-              <li><a href="index-4.html">Home 4 - index-4.html</a></li>
-            </ul>-->
-          </li>
+          {{!-- <li class="dropdown" ><a href="/"><span style="color:white;">Home</span></a>
+          </li> --}}
 
-          <li><a class="nav-link scrollto" href="#blog" style="color:white;">Blog</a></li>
-          <li class="dropdown"><a href="#pricing" style="color:white;"><span>Our Plans</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          {{!-- <li><a class="nav-link scrollto" href="/blog" style="color:white;">CyberSecurity Blogs</a></li> --}}
+          
+       <li class="dropdown"><a href="#pricing"><span style="color:darkgoldenrod;"><b>Social Media Protection Plans</b></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="#pricing" style="color:white;">Personal Protection Plan</a></li>
-              <li><a href="#pricing" style="color:white;">Business Protection Plan</a></li>
+              <li style="color:white;"><a href="/#pricing">Personal Protection Plan</a></li>
+              <li><a href="#pricing" style="color:darkgoldenrod;">Business Protection Plan</a></li>
+              <li><a href="#pricing" style="color:darkgoldenrod;">Advanced Protection Plan</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#footer" style="color:white;">Contact</a></li>
-          
-        </ul>
+          <li><a class="nav-link scrollto" href="/blog"style="color:darkgoldenrod;"><b>CyberSecurity Blogs</b></a></li>
+
+       {{!-- <li class="dropdown"><a href="#"><span style="color:white;">Additional Resources</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li style="color:white;"><a href="/contacts">Contacts</a></li>
+              <li><a href="/careers" style="color:white;">Careers</a></li>
+            </ul>
+          </li> --}}
+          </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
-      <a class="btn-getstarted scrollto" href="/login">{{name}} Login</a>
-      
-    </div>
-  </header><!-- End Header -->
+      <a class="scrollto btn herobiz-bootstrap-business-template" href="/login"><b>sign-in/sign-up</b></a>
 
+    </div>
+  </header>
+  <!-- End Header -->
   <!--<section id="hero-animated" class="hero-animated d-flex align-items-center">
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
        

@@ -63,6 +63,7 @@ router.get('/blog', (req, res) => {
           id: post.id,
           head: post.head,
           content: post.content,
+          type: post.type,
           img: post.img.toString('base64'),
           date: post.date.toISOString().slice(0, 10)
         };
@@ -90,6 +91,7 @@ router.get('/viewdetail/:id', (req, res) => {
         id: post.id,
         head: post.head,
         content: post.content,
+        type: post.type,
         img: post.img.toString('base64'),
         date: post.date.toISOString().slice(0, 10)
       };
@@ -203,6 +205,8 @@ const storage = multer.diskStorage({
 router.get('/blog', (req, res)=>{
     res.render('blog');
 })
+const nodemailer = require('nodemailer');
+
 router.get('/proceed/:id', checkLogin, (req, res) => {
   const subscriptionId = req.params.id;
   db.query('SELECT name, email, username FROM users WHERE username = ?', [req.username], (err, usersResult) => {
@@ -216,6 +220,107 @@ router.get('/proceed/:id', checkLogin, (req, res) => {
         db.query('INSERT INTO subscriptions (username, name, email, plan_name, price, payment_status, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [userData.username, userData.name, userData.email, planData.name, planData.price, 'pending', new Date(), new Date()], (err, result) => {
           if (err) throw err;
           console.log('Subscription created successfully');
+          
+          // Send email to user
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'shaktitripathi12298@gmail.com',
+              pass: 'umvxwtngruchloan'
+            }
+          });
+          
+          const mailOptions = {
+            from: 'shaktitripathi12298@gmail.com',
+            to: userData.email,
+            subject: 'Subscription Confirmation and Invoice',
+            html: `
+            <!DOCTYPE html>
+            <html>
+              <head>
+                <title>Subscription Confirmation and Invoice</title>
+                <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                <!-- Custom CSS -->
+                <style>
+                  body {
+                    font-family: Arial, sans-serif;
+                    font-size: 14px;
+                    line-height: 1.5;
+                    margin: 0;
+                    padding: 0;
+                  }
+                  
+                  .container {
+                    max-width: 800px;
+                    margin: 0 auto;
+                    padding: 20px;
+                  }
+                  
+                  table {
+                    border-collapse: collapse;
+                    width: 100%;
+                  }
+                  
+                  th, td {
+                    padding: 8px;
+                    text-align: left;
+                    border-bottom: 1px solid #ddd;
+                  }
+                  
+                  th {
+                    background-color: #f2f2f2;
+                  }
+                  
+                  tfoot td {
+                    font-weight: bold;
+                  }
+                </style>
+              </head>
+              <body>
+                <div class="container">
+                  <p>Dear ${userData.name},</p>
+                  <p>Thank you for subscribing to ${planData.name}. Your subscription will be activated soon.</p>
+                  <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>${planData.name} Subscription</td>
+                      <td>$${planData.price}</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Total</td>
+                      <td>${planData.price}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              <p>Please find attached the invoice for your subscription.</p>
+              <p>Thank you again for your business!</p>
+            `,
+            // attachments: [
+            //   {
+            //     filename: 'invoice.pdf',
+            //     path: '/path/to/invoice.pdf'
+            //   }
+            // ]
+          };
+          
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+          
           res.redirect('/payment');
         });
       } else {
@@ -224,7 +329,7 @@ router.get('/proceed/:id', checkLogin, (req, res) => {
     });
   });
 });
-
+//updated proceed//
 router.get('/payment', (req, res)=>{
   const subscriptionId = req.params.id;
   db.query('SELECT price FROM subscriptions WHERE username = ? AND payment_status = ?', [req.username, 'pending'], (err, result) => {
@@ -244,12 +349,14 @@ router.post('/payment', (req, res)=>{
 });
 
 router.get('/success', (req, res)=>{
-  db.query('SELECT * FROM subscriptions WHERE username = ? AND payment_status = ?', [req.username, 'success'], (err, result) => {
+ // const subscriptionId = req.params.id;
+  db.query('SELECT username, email, name FROM subscriptions WHERE username = ? AND payment_status = ?', [req.username, 'success'], (err, result) => {
     if (err) throw err;
     const subscriptionData = result[0];
     res.render('success', { subscriptionData: subscriptionData });
   });
 });
+
 
 //End Blog Routes//
 //carrier Page//
@@ -370,7 +477,7 @@ router.get('/subscriptions/:id', checkLogin, (req, res) => {
           planData: planData,
         });
       } else {
-        res.status(302).redirect('/admin');
+        res.status(302).redirect('/register');
       }
     });
   });
@@ -386,7 +493,7 @@ router.get('/proceed/:id', checkLogin, (req, res) => {
       const planData = plansResult[0];
       if (req.name && req.email && req.active == 1) {
         const firstname = req.name.split(' ')[0];
-        res.render('dashboard', {
+        res.render('payment', {
           firstname,
           name: req.name,
           email: req.email,

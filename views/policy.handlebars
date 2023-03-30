@@ -55,39 +55,42 @@
 
       <a href="/" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="../public/logo2.png" alt="CyberCyld-Logo"> 
-        <h4 style="color:darkgoldenrod;"> <small>Social Media Security Plateform</small><span>.</span></h4>
+        <img src="../public/logo2.png" alt="CyberCyld-Logo" style="margin-right:30px;"> 
+        {{!-- <h4 style="color:darkgoldenrod;"> <small>Social Media Security Plateform</small><span>.</span></h4> --}}
       </a>
 
       <nav id="navbar" class="navbar">
         <ul>
 
-          <li class="dropdown" ><a href="/"><span style="color:white;">Home</span></a>
-          </li>
+          {{!-- <li class="dropdown" ><a href="/"><span style="color:white;">Home</span></a>
+          </li> --}}
 
-          <li><a class="nav-link scrollto" href="/blog" style="color:white;">Blog</a></li>
-   <!--       
-       <li class="dropdown"><a href="#plan"><span style="color:white;">Our Business Plan</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          {{!-- <li><a class="nav-link scrollto" href="/blog" style="color:white;">CyberSecurity Blogs</a></li> --}}
+          
+       <li class="dropdown"><a href="#pricing"><span style="color:darkgoldenrod;"><b>Social Media Protection Plans</b></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li style="color:white;"><a href="#plan1">Personal Protection Plan</a></li>
-              <li><a href="#plan3" style="color:white;">Business Protection Plan</a></li>
+              <li style="color:white;"><a href="/#pricing">Personal Protection Plan</a></li>
+              <li><a href="#pricing" style="color:darkgoldenrod;">Business Protection Plan</a></li>
+              <li><a href="#pricing" style="color:darkgoldenrod;">Advanced Protection Plan</a></li>
             </ul>
           </li>
-  -->        
-       <li class="dropdown"><a href="#"><span style="color:white;">Contact Us</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li><a class="nav-link scrollto" href="/blog"style="color:darkgoldenrod;"><b>Cyber Security Blogs</b></a></li>
+
+       {{!-- <li class="dropdown"><a href="#"><span style="color:white;">Additional Resources</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li style="color:white;"><a href="/contacts">Contacts</a></li>
               <li><a href="/careers" style="color:white;">Careers</a></li>
             </ul>
-          </li>
+          </li> --}}
           </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
-      <a class="btn-getstarted scrollto" href="/login">Login</a>
+      <a class="scrollto btn herobiz-bootstrap-business-template" href="/login"><b>sign-in/sign-up</b></a>
 
     </div>
   </header>
+  <!-- End Header -->
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -95,10 +98,9 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Privacy & Policy</h2>
+          <h4><b>Privacy and Policy</b></h4>
           <ol>
-            <li><a href="/">Home</a></li>
-            <li>Privacy & Policy</li>
+            <li><a href="/"><b>Home</b></a></li>
           </ol>
         </div>
 
@@ -120,7 +122,7 @@
                 <div class="content">
                 <p>Effective date: 31st December, 2022</p>
                 <h2>Introduction</h2>
-                <!--<p><a href="https://www.cybercyld.com/Cookee">Cookie Usage, click here</a>.</p> -->
+                <!--<p><a href="https://cybercyld.com/Cookee">Cookie Usage, click here</a>.</p> -->
                 <p>We take privacy seriously. We have anonymized IPs for Google Analytics and denied them access to use our data in any commercial way. We do not serve ads. We do not sell any data. All sensitive data that we receive will be deleted upon request or after a maximum of 14 days after a case is closed.</p>
                 <p><a href="https://www.cybercyld.com/" target="_self" rel="follow noopener noreferrer" data-wpel-link="exclude">AppTwig Pvt. Ltd.</a> (“us”, “we”, or “our”) operates CyberCyld.com, (the “Service”).</p>
                 <p>This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. Our Privacy Policy for AppTwig Pvt. Ltd. is managed through&nbsp;Free Privacy Policy.</p>
@@ -245,20 +247,19 @@
             <div class="footer-info">
               <h4>CyberCyld- by AppTwig Pvt. Ltd. </h4>
               <p>
-                Madhuban Vihar Coloney , Near SGPGI , Lucknow 226014<br><br>
-                <strong>Phone:</strong> +91 7393929207<br>
+                D-322, ITTINA ABHA, Banglore-560037<br><br>
                 <strong>Email:</strong> alert@cybercyld.com<br>
               </p>
             </div>
           </div>
-   <div class="col-lg-2 col-md-6 footer-links">
+
+          <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="/">Home</a></li>
-              <!--<li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>-->
-              <!--<li><i class="bi bi-chevron-right"></i> <a href="#pricing">Services</a></li> -->
               <li><i class="bi bi-chevron-right"></i> <a href="/terms-of-use">Terms of service</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="/policy">Privacy policy</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/careers">Careers</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/contacts">Contact us</a></li>
             </ul>
           </div>
 
@@ -292,7 +293,7 @@
 
         <div class="d-flex flex-column align-items-center align-items-lg-start">
           <div class="copyright">
-            &copy; Copyright <strong><span>Apptwig Pvt. Ltd. </span></strong> All Rights Reserved
+            © Copyright <strong><span>Apptwig Pvt. Ltd. </span></strong> All Rights Reserved
           </div>
           <div class="credits">
             <!-- All the links in the footer should remain intact. -->
@@ -307,9 +308,10 @@
           <a href="https://twitter.com/home" class="twitter"><i class="bi bi-twitter"></i></a>
           <a href="https://www.facebook.com/profile.php?id=100088078479457" class="facebook"><i class="bi bi-facebook"></i></a>
           <a href="https://www.instagram.com/cybercyld/" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-          <a href="https://www.youtube.com/channel/UCI4-0jfOVGoMfY9Ub18NcBA" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.youtube.com/channel/UCI4-0jfOVGoMfY9Ub18NcBA" class="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="https://www.linkedin.com/in/cyber-cyld-4b68b0257/" class="LinkedIn"><i class="bi bi-linkedin"></i></a>
         </div>
+
 
       </div>
     </div>

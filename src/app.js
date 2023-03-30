@@ -28,31 +28,66 @@ const razorpay = new Razorpay({
 app.use('/', require('./template'));
 app.use("/user", require('./user') );
 app.post('/pay', (req, res) => {
-    const { amount, currency, name, description, image, order_id } = req.body;
-  
-    const options = {
-      amount: 12000,
-      currency: currency,
-      receipt: 'receipt#1',
-      payment_capture: 1
-    };
-  
-    razorpay.orders.create(options, (err, order) => {
+  const { amount, currency, name, description, image, order_id } = req.body;
+
+  const options = {
+    amount: 12000,
+    currency: currency,
+    receipt: 'receipt#1',
+    payment_capture: 1
+  };
+
+  razorpay.orders.create(options, (err, order) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.render('payment', {
+        key_id: razorpay.key_id,
+        amount: order.amount,
+        currency: order.currency,
+        name:'CyberCyld',
+        description: 'A Digital Security Plateform',
+        image: 'https://cybercyld.com/public/logo2.png',
+        order_id: order.id
+      });
+    }
+  });
+});
+
+// Handle successful payments
+app.post('/success', (req, res) => {
+  const paymentId = req.body.razorpay_payment_id;
+  const orderId = req.body.razorpay_order_id;
+  const signature = req.body.razorpay_signature;
+
+  const body = {
+    payment_id: paymentId,
+    amount: 12000, // the amount should be fetched from the order details
+    currency: 'INR' // the currency should be fetched from the order details
+  };
+
+  const expectedSignature = crypto
+    .createHmac('sha256', razorpay.key_secret)
+    .update(JSON.stringify(body))
+    .digest('hex');
+
+  // Verify the signature to ensure the payment is genuine
+  if (expectedSignature === signature) {
+    razorpay.payments.capture(paymentId, 12000, 'INR', (err, payment) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.render('dashboard', {
-          key_id: razorpay.key_id,
-          amount: order.amount,
-          currency: order.currency,
-          name:'CyberCyld',
-          description: 'A Digital Security Plateform',
-          image: 'https://cybercyld.com/public/logo2.png',
-          order_id: order.id
-        });
+        // Redirect to the success page
+        res.redirect('/success');
       }
     });
-  });
+  } else {
+    res.status(400).send('Invalid payment');
+  }
+});
+
+
+
 app.use("/*", (req, res) => {
     res.status(404).send(`<br><br><h1 style="text-align: center;">404 || content not found</h1>`);
     

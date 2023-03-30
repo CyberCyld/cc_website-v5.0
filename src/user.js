@@ -186,7 +186,7 @@ router.post('/otp/activate', verifyToken, (req, res) => {
             if (userOTP) {
                 if (OTP_attempt < 6) {
                     var today = new Date();
-                    if (((Math.floor(today.getTime() / 1000)) - results[0].OTP_timestamp) < 7200) {
+                    if (((Math.floor(today.getTime() / 1000)) - results[0].OTP_timestamp) < 14400) {
                         if (results[0].OTP == userOTP) {
                             let select = `UPDATE users  SET active='1', OTP=NULL, OTP_timestamp=NULL, OTP_attempt='0' WHERE USERNAME= ?;`;
                             db.query(select, [authData.user.username], (error, results, fields) => {
