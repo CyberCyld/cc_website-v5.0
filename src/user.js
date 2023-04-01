@@ -101,7 +101,7 @@ router.post('/signup/', (req, res) => {
                     otp(email, OTP)
                         .then((result) => {
                             OTP = (new shajs.sha1().update(`${OTP}`).digest('hex'))
-                            db.promise().query(`INSERT INTO USERS VALUES(?, ?, ?, ?, '0', ?, ?, '0', '0', ?)`, [username, password, ID, email, uname, OTP_timestamp, OTP]);
+                            db.promise().query(`INSERT INTO users VALUES(?, ?, ?, ?, '0', ?, ?, '0', '0', 0)`, [username, password, ID, email, uname, OTP_timestamp, OTP]);
 
                             //Mock user
                             const user = {

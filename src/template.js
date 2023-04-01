@@ -627,7 +627,7 @@ router.get('/delete/:id', checkLogin, (req, res) => {
 //post
 router.post('/admindashboard',checkLogin, function(req, res) {
     const { head, content, img}  = req.body;
-    var sql = `INSERT INTO blog (head, content, img, date , staus) VALUES ("${head}", "${content}", "${img}", NOW() ,"Active")`;
+    var sql = `INSERT INTO blog (head, content, img, date , status) VALUES ("${head}", "${content}", "${img}", NOW() ,"Active")`;
     db.query(sql, function(err, result) {
       if (err) throw err;
       console.log('record inserted');
