@@ -10,7 +10,7 @@ const router = express.Router();
 const app = express();
 app.use(cookieParser());
 const path = require('path');
-
+const moment = require('moment')
 //for payment
 const session = require('express-session');
 const passport = require('passport');
@@ -71,18 +71,12 @@ router.get('/test', (req, res) => {
     res.json({ msg: "router working" })
     console.log(req.body);
 })
+
 router.post('/signup/', (req, res) => {
-   // const { username, email, password, uname } = req.body;
-    //const usernameRegex = /^[a-zA-Z0-9_-]{3,20}$/;
-    //const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-   // const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     const { username, email, password, uname } = req.body;
-    // const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-    // if (!passwordRegex.test(password)) {
-    //     return res.status(400).send({ msg: "Invalid password format. Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number." });
-    // }
     if (username && email && password && uname) {
         try {
+            
             let select = `SELECT USERNAME, active FROM users WHERE USERNAME= ?`;
             db.query(select, [username], (error, results, fields) => {
                 if (error) {
@@ -96,14 +90,13 @@ router.post('/signup/', (req, res) => {
                     }
                     var OTP = randomInt(10000, 99999);
                     var today = new Date();
-                    var OTP_timestamp = (Math.floor(today.getTime() / 1000));
-
+                    var OTP_timestamp = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
+                    console.log(`Current time${OTP_timestamp}`);
                     otp(email, OTP)
                         .then((result) => {
                             OTP = (new shajs.sha1().update(`${OTP}`).digest('hex'))
-                            db.promise().query(`INSERT INTO users VALUES(?, ?, ?, ?, '0', ?, ?, '0', '0', 0)`, [username, password, ID, email, uname, OTP_timestamp, OTP]);
-
-                            //Mock user
+                            db.promise().query(`INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?, ? , ?, ?)`, [username, password, ID, email,'0', uname, OTP , OTP_timestamp,'','']);
+                            // Mock user
                             const user = {
                                 username: username,
                                 ID: ID
@@ -144,13 +137,14 @@ router.post('/signup/', (req, res) => {
                                 username: username,
                                 ID: ID
                             }
+
                             jwt.sign({ user }, process.env.JWT_token, { expiresIn: '3600s' }, (err, token) => {
                                 if (err) {
                                     res.json({ err });
                                 }
                                 res.cookie('authorization', `bearer ${token}`);
                                 res.cookie('active', 0);
-                                res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
+                                //res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
                                 res.status(200).send({ msg: `account created!! welcome ${username}, please verify your OTP sent to your email` });
                             });
 
@@ -173,60 +167,198 @@ router.post('/signup/', (req, res) => {
     }
 });
 
+// REAL CODE//
+// router.post('/otp/activate', verifyToken, (req, res) => {
+//     const { userOTP } = req.body;
+//     authData = req.data;
+//     let select = `SELECT USERNAME, ID, OTP, OTP_timestamp, OTP_attempt FROM users WHERE USERNAME= ?`;
+//     db.query(select, [authData.user.username], (error, results, fields) => {
+//         if (error) {
+//             return console.error(error.message);
+//         }
+//         var OTP_attempt = results[0].OTP_attempt;
+//         var validTime   = moment(results[0].OTP_timestamp).add(2, 'hours').format("YYYY-MM-DD hh:mm:ss");;
+//         var timeValid   =  moment(validTime).format("X")
+//         console.log(validTime);
+//         if (results[0].ID === authData.user.ID) {
+//             if (userOTP) {
+//                 if (OTP_attempt < 6) {
+//                     var today = new Date();
+//                     var OTP_timestamp = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
+//                     var curTime = moment(OTP_timestamp).format("X");
+                    
+//                     if (timeValid >= curTime) { // 2 hours in seconds
+//                         if (results[0].OTP == userOTP) {
+//                             let select = `UPDATE users SET active='1', OTP=NULL, OTP_timestamp=NULL, OTP_attempt='0' WHERE username = ?;`;
+//                             db.query(select, [authData.user.username], (error, results, fields) => {
+//                                 if (error) {
+//                                     return console.error(error.message);
+//                                 }
+//                                 res.cookie('active', 1);
+//                                 res.send({ msg: "account activated!" })
+//                             });
+//                         } else {
+//                             OTP_attempt++;
+//                             let select = `UPDATE users  SET OTP_attempt= ? WHERE USERNAME= ?;`;
+//                             db.query(select, [OTP_attempt, authData.user.username], (error, results, fields) => {
+//                                 if (error) {
+//                                     return console.error(error.message);
+//                                 } if (OTP_attempt < 3) {
+//                                     res.status(403).send({ msg: "wrong OTP" });
+//                                 } else {
+//                                     tries = 6 - OTP_attempt;
+//                                     res.status(403).send({ msg: `wrong OTP, ${tries} tries left` });
+//                                 }
+
+//                             });
+//                         }
+//                     } else {
+//                         res.status(403).send({ msg: "OTP expired" });
+//                     }
+//                 } else {
+//                     res.status(403).send({ msg: "maximum OTP attempt limitation exceeded" });
+//                 }
+//             } else {
+//                 res.status(403).send({ msg: "blank OTP field is not allowed, please enter your OTP" });
+//             }
+//         } else {
+//             res.status(400).send({ msg: "something went wrong, try to relogin with userID and password after logout" });
+//         }
+
+//     });
+// }); 
+// router.post('/otp/activate', verifyToken, (req, res) => {
+//     const { userOTP } = req.body;
+//     authData = req.data;
+//     let select = `SELECT USERNAME, ID, OTP, OTP_timestamp, OTP_attempt FROM users WHERE USERNAME= ?`;
+//     db.query(select, [authData.user.username], (error, results, fields) => {
+//         if (error) {
+//             return console.error(error.message);
+//         }
+//         var OTP_attempt = results[0].OTP_attempt;
+//         if (results[0].ID === authData.user.ID) {
+//             if (userOTP) {
+//                 if (OTP_attempt < 6) {
+//                     var today = new Date();
+//                     if (((Math.floor(today.getTime() / 1000)) - results[0].OTP_timestamp) < 7200) { // 1 hours in seconds
+//                         let newOTP = req.cookies.newOTP; // check if a new OTP has been sent
+//                         let OTP = results[0].OTP; // use the old OTP by default
+//                         if (newOTP) {
+//                             OTP = (new shajs.sha1().update(`${newOTP}`).digest('hex')); // use the new OTP if it exists
+//                         }
+//                         if (OTP == userOTP) {
+//                             let select = `UPDATE users SET active='1', OTP=NULL, OTP_timestamp=NULL, OTP_attempt='0' WHERE username = ?;`;
+//                             db.query(select, [authData.user.username], (error, results, fields) => {
+//                                 if (error) {
+//                                     return console.error(error.message);
+//                                 }
+//                                 res.cookie('active', 1);
+//                                 res.send({ msg: "account activated!" })
+//                             });
+//                         } else {
+//                             OTP_attempt++;
+//                             let select = `UPDATE users  SET OTP_attempt= ? WHERE USERNAME= ?;`;
+//                             db.query(select, [OTP_attempt, authData.user.username], (error, results, fields) => {
+//                                 if (error) {
+//                                     return console.error(error.message);
+//                                 } if (OTP_attempt < 3) {
+//                                     res.status(403).send({ msg: "wrong OTP" });
+//                                 } else {
+//                                     tries = 6 - OTP_attempt;
+//                                     res.status(403).send({ msg: `wrong OTP, ${tries} tries left` });
+//                                 }
+
+//                             });
+//                         }
+//                     } else {
+//                         res.status(403).send({ msg: "OTP expired" });
+//                     }
+//                 } else {
+//                     res.status(403).send({ msg: "maximum OTP attempt limitation exceeded" });
+//                 }
+//             } else {
+//                 res.status(403).send({ msg: "blank OTP field is not allowed, please enter your OTP" });
+//             }
+//         } else {
+//             res.status(400).send({ msg: "something went wrong, try to relogin with userID and password after logout" });
+//         }
+
+//     });
+// });
 router.post('/otp/activate', verifyToken, (req, res) => {
     const { userOTP } = req.body;
     authData = req.data;
     let select = `SELECT USERNAME, ID, OTP, OTP_timestamp, OTP_attempt FROM users WHERE USERNAME= ?`;
     db.query(select, [authData.user.username], (error, results, fields) => {
-        if (error) {
-            return console.error(error.message);
-        }
-        var OTP_attempt = results[0].OTP_attempt;
-        if (results[0].ID === authData.user.ID) {
-            if (userOTP) {
-                if (OTP_attempt < 6) {
-                    var today = new Date();
-                    if (((Math.floor(today.getTime() / 1000)) - results[0].OTP_timestamp) < 14400) {
-                        if (results[0].OTP == userOTP) {
-                            let select = `UPDATE users  SET active='1', OTP=NULL, OTP_timestamp=NULL, OTP_attempt='0' WHERE USERNAME= ?;`;
-                            db.query(select, [authData.user.username], (error, results, fields) => {
-                                if (error) {
-                                    return console.error(error.message);
-                                }
-                                res.cookie('active', 1);
-                                res.send({ msg: "account activated!" })
-                            });
-                        } else {
-                            OTP_attempt++;
-                            let select = `UPDATE users  SET OTP_attempt= ? WHERE USERNAME= ?;`;
-                            db.query(select, [OTP_attempt, authData.user.username], (error, results, fields) => {
-                                if (error) {
-                                    return console.error(error.message);
-                                } if (OTP_attempt < 3) {
-                                    res.status(403).send({ msg: "wrong OTP" });
-                                } else {
-                                    tries = 6 - OTP_attempt;
-                                    res.status(403).send({ msg: `wrong OTP, ${tries} tries left` });
-                                }
-
-                            });
-                        }
-                    } else {
-                        res.status(403).send({ msg: "OTP expired" });
-                    }
-                } else {
-                    res.status(403).send({ msg: "Maximum OTP attempt limitation exceeded" });
-                }
+      if (error) {
+        return console.error(error.message);
+      }
+      var OTP_attempt = results[0].OTP_attempt;
+      var validTime = moment(results[0].OTP_timestamp).add(2, 'hours').format("YYYY-MM-DD hh:mm:ss");;
+      var timeValid =  moment(validTime).format("X")
+      console.log(validTime);
+      if (results[0].ID === authData.user.ID) {
+        if (userOTP) {
+          if (OTP_attempt < 6) {
+            var today = new Date();
+            var OTP_timestamp = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
+            var curTime = moment(OTP_timestamp).format("X");
+  
+            if (timeValid >= curTime) { // 2 hours in seconds
+              if (results[0].OTP == userOTP) {
+                let select = `UPDATE users SET active='1', OTP=NULL, OTP_timestamp=NULL, OTP_attempt='0' WHERE username = ?;`;
+                db.query(select, [authData.user.username], (error, results, fields) => {
+                  if (error) {
+                    return console.error(error.message);
+                  }
+                  // res.cookie('active', 1);
+                  // setTimeout(() => {
+                  //     res.clearCookie('active',0);
+                  // }, 30000); 
+  
+                  // Set timeout to call signout function after 90 seconds
+                  setTimeout(() => {
+                    router.get('/signout/', (req, res) => {
+                      res.clearCookie('authorization');
+                      res.clearCookie('active');
+                      res.send('ok');
+                    })
+                  }, 90000);
+  
+                  res.send({ msg: "account activated!" })
+                });
+              } else {
+                OTP_attempt++;
+                let select = `UPDATE users  SET OTP_attempt= ? WHERE USERNAME= ?;`;
+                db.query(select, [OTP_attempt, authData.user.username], (error, results, fields) => {
+                  if (error) {
+                    return console.error(error.message);
+                  } if (OTP_attempt < 3) {
+                    res.status(403).send({ msg: "wrong OTP" });
+                  } else {
+                    tries = 6 - OTP_attempt;
+                    res.status(403).send({ msg: `wrong OTP, ${tries} tries left` });
+                  }
+  
+                });
+              }
             } else {
-                res.status(403).send({ msg: "Blank OTP field is not allowed, please enter your OTP" });
+              res.status(403).send({ msg: "OTP expired" });
             }
+          } else {
+            res.status(403).send({ msg: "maximum OTP attempt limitation exceeded" });
+          }
         } else {
-            res.status(400).send({ msg: "Something went wrong, try to relogin with userID and password after logout" });
+          res.status(403).send({ msg: "blank OTP field is not allowed, please enter your OTP" });
         }
-
+      } else {
+        res.status(400).send({ msg: "something went wrong, try to relogin with userID and password after logout" });
+      }
+  
     });
-});
-
+  });
+  
+//COOKIE AUTO RESET//
 router.post('/otp/resend', verifyToken, (req, res) => {
 
     let select = `SELECT ID, email FROM users WHERE USERNAME= ?`;
