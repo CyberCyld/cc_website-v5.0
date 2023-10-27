@@ -87,16 +87,17 @@
           {{!-- <li class="dropdown" ><a href="/"><span style="color:white;">Home</span></a>
           </li> --}}
 
-          {{!-- <li><a class="nav-link scrollto" href="/blog" style="color:white;">CyberSecurity Blogs</a></li> --}}
-          
-       <li class="dropdown"><a href="#pricing"><span style="color:darkgoldenrod;"><b>Social Media Protection Plans</b></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          {{!-- <li><a class="nav-link scrollto" href="/" style="color:white;">Home</a></li> --}}
+          <li><a class="nav-link scrollto" href="/"style="color:darkgoldenrod;"><b>Home</b></a></li>
+       <li class="dropdown"><a href="#pricing"><span style="color:darkgoldenrod;"><b>Cyber Protection Plans</b></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li style="color:white;"><a href="/#pricing">Personal Protection Plan</a></li>
-              <li><a href="#pricing" style="color:darkgoldenrod;">Business Protection Plan</a></li>
-              <li><a href="#pricing" style="color:darkgoldenrod;">Advanced Protection Plan</a></li>
+              <li style="color:white;"><a href="/#pricing">FREE Personal Cyber Protection Plan - Girls Only</a></li>
+              <li style="color:white;"><a href="/#pricing">Personal Cyber Protection Plan</a></li>
+              <li><a href="#pricing" style="color:darkgoldenrod;">Family Cyber Protection Plan</a></li>
+              <li><a href="#pricing" style="color:darkgoldenrod;">Bussiness Cyber Protection Plan</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="/blog"style="color:darkgoldenrod;"><b>Cyber Security Blogs</b></a></li>
+          <li><a class="nav-link scrollto" href="/blog"style="color:darkgoldenrod;"><b>Join Our OSINT Community</b></a></li>
 
        {{!-- <li class="dropdown"><a href="#"><span style="color:white;">Additional Resources</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
@@ -108,7 +109,7 @@
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
-      <a class="scrollto btn herobiz-bootstrap-business-template" href="/login"><b>sign-in/sign-up</b></a>
+      <a class="scrollto btn herobiz-bootstrap-business-template" href="/login"><b>sign-in</b></a>
 
     </div>
   </header>
@@ -526,12 +527,14 @@
     </section><!-- End Features Section -->
 
 
-    <!-- ======= Pricing Section ======= -->
+   <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h4><p style="color:darkslategray;"><u><b>Social Media Protection Plans</b></u></p></h4>
+          <h4><p style="color:Black;"><b>Choose Cyber Protection Plan That Fits Your Needs</b></p></h4>
+          <h6><p style="color:Black;"><b>Get our FREE Personal Protection Plan, only for Girl Students. </b></p></h4>
+          <h6><p style="color:Black;"><b>Save more and get a 60 day money-back guarantee with our annual plans.</b></p></h4>
         </div>
         
         <div class="row gy-4">
@@ -540,24 +543,31 @@
             <div class="pricing-item featured">
               <div class="pricing-header">
                 <h3>{{this.name}}</h3>
-               <h5><sup>INR</sup><b style="font-weight:bold; font-size:30px; color:white;">{{this.price}}</b><sup>-50% Off*</sup></h5>
+               <h5><sup>INR</sup><b style="font-weight:bold; font-size:30px; color:white;">{{this.price}}</b><sup>per/month    **Billed Yearly </sup></h5>
               </div>
               <ul>
-                <li><i class="bi bi-check-circle"></i><b>{{this.itemone}}</b></li>
-              <li><i class="bi bi-check-circle"></i><b>{{this.itemtwo}} </b></li>
-                <li><i class="bi bi-check-circle"></i><b>{{this.itemthree}}</b></li>
-                <li><i class="bi bi-check-circle"></i><b>{{this.itemfour}}</b></li>
-                <li><i class="bi bi-check-circle"></i><b>{{this.itemfive}}</b></li>
-                <li><i class="bi bi-check-circle"></i><b>{{this.itemsix}}</b></li>
-                <li><i class="bi bi-check-circle"></i><b>{{this.itemseven}}</b></li>
-                <li><i class="bi bi-check-circle"></i><b>{{this.itemeight}}</b></li>
-                <li><span style="color:darkred;">**add-on Features:</span></li>
-                <li><input type="checkbox"/> &nbsp;&nbsp;<b>Blackmail Protection.</b></li>
-                <li><input type="checkbox"/> &nbsp;&nbsp;<b>Remove images and videos from social media platforms.</b></li>
+                      <li><span style="color:darkred;"><b>Cyber Expert Support:</b></span></li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemone}}</li>
+                <li><span style="color:darkred;"><b>Online Safety and Security:</b></span></li>
+                        <li><i class="bi bi-check"style="color:darkgreen;"></i><span style="color:black;">{{this.itemtwo}}</li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemthree}}</li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemfour}}</li>
+                                      <li><span style="color:darkred;"><b>Account Monitoring and Notification:</b></span></li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemfive}}</li>
+                        <li><i class="bi bi-check"style="color:darkgreen;"></i><span style="color:black;">{{this.itemsix}}</li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemseven}}</li>
+                        <li><span style="color:darkred;"><b>Cyber Fraud Protection:</b></span></li>
+                        <li><i class="bi bi-check"style="color:darkgreen;"></i><span style="color:black;">{{this.itemeight}}</b></li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemnine}}</li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemten}}</li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemeleven}}</li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemtwelve}}</li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemthirteen}}</li>
+                        <li><i class="bi bi-check" style="color:darkgreen;"></i><span style="color:black;">{{this.itemfourteen}}</li>
               </ul>
 
               <div class="text-center mt-auto">
-                <a href="/subscriptions/{{id}}" class="buy-btn">Buy Now</a>
+                <a href="/subscriptions/{{id}}" class="buy-btn">Get Protection Now</a>
               </div>
             </div>
             
@@ -565,6 +575,7 @@
            {{/each}}
           
           <!-- End Pricing Item -->
+
 {{!-- 
           <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="600">
             <div class="pricing-item">
