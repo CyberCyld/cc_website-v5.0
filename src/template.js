@@ -12,6 +12,9 @@ const fs = require('fs');
 
 //for payment
 
+//up32dr1796
+//up32ew9946
+
 //for payment end
 //for facebook 
 const FacebookStrategy = require('passport-facebook').Strategy;
@@ -101,6 +104,9 @@ router.get('/viewdetail/:id', (req, res) => {
   });
 });
 
+router.get('/community', (req, res)=>{
+  res.render('community');
+})
 
 
 // Set storage engine for Multer
@@ -367,17 +373,18 @@ router.get('/tables', checkLogin, (req, res) => {
     const blogSql = 'SELECT `id`, `head`, `content`, `type`, `img`, `date`, `status` FROM `blog` WHERE `status` = 1';
     const jobSql = 'SELECT `id`, `job_title`, `job_description`, `job_location`, `job_type`, `salary`, `posted_date`, `application_deadline` FROM `job_posting` WHERE 1';
     const videoSql = 'SELECT `id`, `title`, `embed_link` FROM `videos` WHERE 1';
+    const subSql = 'SELECT `id`, `username`, `name`, `email`, `plan_name`, `price`, `payment_status`, `start_date`, `end_date` FROM `subscriptions` WHERE 1';
 
     db.query(blogSql, (err, blogResult) => {
       if (err) throw err;
-
       db.query(jobSql, (err, jobResult) => {
         if (err) throw err;
-
         db.query(videoSql, (err, videoResult) => {
           if (err) throw err;
-
-          res.render('tables', { blogs: blogResult, jobs: jobResult, videos: videoResult });
+          db.query(subSql, (err, subResult) => {
+            if (err) throw err;
+            res.render('tables', { blogs: blogResult, jobs: jobResult, videos: videoResult, subs: subResult });
+          });
         });
       });
     });
@@ -512,7 +519,27 @@ router.get('/proceed/:id', checkLogin, (req, res) => {
 });
 
 
+router.get('/tables', checkLogin, (req, res) => {
+  if (!req.name || !req.email) {
+    res.render('login');
+  } else {
+    const blogSql = 'SELECT `id`, `head`, `content`, `type`, `img`, `date`, `status` FROM `blog` WHERE `status` = 1';
+    const jobSql = 'SELECT `id`, `job_title`, `job_description`, `job_location`, `job_type`, `salary`, `posted_date`, `application_deadline` FROM `job_posting` WHERE 1';
+    const videoSql = 'SELECT `id`, `title`, `embed_link` FROM `videos` WHERE 1';
 
+    db.query(blogSql, (err, blogResult) => {
+      if (err) throw err;
+      db.query(jobSql, (err, jobResult) => {
+        if (err) throw err;
+        db.query(videoSql, (err, videoResult) => {
+          if (err) throw err;
+
+          res.render('tables', { blogs: blogResult, jobs: jobResult, videos: videoResult });
+        });
+      });
+    });
+  }
+});
 
 
 
